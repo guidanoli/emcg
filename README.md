@@ -1,2 +1,1 @@
-# emcg
-Mathematical Elements for Computer Graphics
+# Mathematical Elements for Computer Graphics
