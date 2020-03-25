@@ -1,1 +1,1 @@
-add_subdirectory(racional)
+add_subdirectory(rational)
