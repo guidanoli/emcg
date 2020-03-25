@@ -2,7 +2,7 @@
 
 #include <assert.h>
 
-void main()
+int main(int argc, char **argv)
 {
 	// Equality
 	assert(Rational(1) == Rational(1));
@@ -33,4 +33,6 @@ void main()
 	// Division
 	assert(Rational(3) / Rational(5) == Rational(3, 5));
 	assert(Rational(3, 7) / Rational(5, 11) == Rational(33, 35));
+	
+	return 0;
 }
