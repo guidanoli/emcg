@@ -12,22 +12,30 @@ private:
 	T *data;
 	std::size_t n;
 public:
-	Vector(std::size_t n) : n(n), data(new T[n]) {}
-
-	Vector(const Vector& v) : n(v.n), data(new T[v.n]) {}
+	Vector()				: n(0),		data(nullptr) {}
+	Vector(std::size_t n)	: n(n),		data(new T[n]) {}
+	Vector(const Vector& v) : n(v.n),	data(new T[v.n]) {}
+	~Vector() { delete[] data; }
 
 	std::size_t size() const { return n; }
 
 	T get(std::size_t index) const {
-		assert(index < n);
 		return data[index];
 	}
 
 	void set(std::size_t index, T value) {
-		assert(index < n);
 		data[index] = value;
 	}
 	
-	~Vector() { delete[] data; }
+	void operator=(const Vector &w) {
+		if (w.n != n) {
+			if (n != 0)
+				delete[] data;
+			data = new T[w.n];
+			n = w.n;
+		}
+		for (std::size_t i = 0; i < n; ++i)
+			data[i] = w.data[i];
+	}
 };
 #endif
