@@ -5,7 +5,7 @@ install:
 script:
     - mkdir build
     - cd build
-    - cmake .. -DEMCG_HAS_GL=OFF
+    - cmake ..
     - cmake --build .
     - ctest -V -C Debug
 after_failure:
