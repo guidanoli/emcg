@@ -6,30 +6,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(BUILD_TESTING "Enable test cases" ON)
-option(EMCG_HAS_GL "Has graphic libraries" ON)
 
-if (EMCG_HAS_GL)
+find_package(OpenGL)
+find_package(GLUT)
 
-	find_package(OpenGL)
-	find_package(GLUT)
-
-	if (OPENGL_FOUND)
-		include_directories(${OPENGL_INCLUDE_DIRS})
-	endif()
-
-	if (GLUT_FOUND)
-		include_directories(${GLUT_INCLUDE_DIRS})
-	endif()
-	
-	if (NOT OPENGL_FOUND OR
-		NOT GLUT_FOUND)
-		
-		# If some GL wasn't found
-		set(EMCG_HAS_GL OFF)
-		
-	endif()
-	
+if (OPENGL_FOUND)
+	include_directories(${OPENGL_INCLUDE_DIRS})
 endif()
+
+if (GLUT_FOUND)
+	include_directories(${GLUT_INCLUDE_DIRS})
+endif()
+
+set(EMCG_HAS_GL (OPENGL_FOUND AND GLUT_FOUND))
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
