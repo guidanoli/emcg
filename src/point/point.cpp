@@ -1,9 +1,4 @@
-#if defined(_WIN32) || defined(_WIN64)
-#include <Windows.h>
-#endif
-
-#include <GL/gl.h>
-#include <GL/glut.h>
+#include "glh.h"
 
 void display_function()
 {
@@ -13,15 +8,9 @@ void display_function()
 
 	glColor3f(0, 0.467f, 0.745f); // Sets the current color to ocean blue
 
-	gluOrtho2D(-1, 1, -1, 1); // Define the orthographic 2d projection matrix
-	                          // In other words, sets '-1' as the far left,
-	                          //                      '1' as the far right,
-	                          //                      '-1' as the far bottom,
-	                          //                  and '1' as the far top.
-
-	glBegin(GL_POINTS); // Start plotting points
-	glVertex2f(0, 0);   // Plot a point at the origin
-	glEnd();            // Stop plotting points
+	glBegin(GL_POINTS);     // Start plotting points
+		glVertex2f(0, 0);   // Plot a point at the origin
+	glEnd();                // Stop plotting points
 
 	glutSwapBuffers(); // Refresh the buffer
 }
@@ -38,6 +27,12 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(10, 10); // Set window initial position
 
 	glutCreateWindow("Pale Blue Dot"); // Create window with a title
+
+	gluOrtho2D(-1, 1, -1, 1); // Define the orthographic 2d projection matrix
+							  // In other words, sets '-1' as the far left,
+							  //                      '1' as the far right,
+							  //                      '-1' as the far bottom,
+							  //                  and '1' as the far top.
 
 	glutDisplayFunc(display_function); // Register display function
 

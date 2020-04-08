@@ -7,6 +7,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(BUILD_TESTING "Enable test cases" ON)
 
+if (BUILD_TESTING)
+	enable_testing()
+endif()
+
 find_package(OpenGL)
 find_package(GLUT)
 
